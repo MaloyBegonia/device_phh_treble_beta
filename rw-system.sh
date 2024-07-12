@@ -202,6 +202,12 @@ changeKeylayout() {
         changed=true
     fi
 
+        if getprop ro.vendor.build.fingerprint |grep -iq -e samsung/a10sxx;then
+        mkdir -p /data/vendor/mcRegistry
+        chown system /data/vendor/mcRegistry
+        chmod 755 /data/vendor/mcRegistry
+    fi
+
     if getprop ro.vendor.build.fingerprint | grep -qi oneplus/oneplus6/oneplus6; then
         cp /system/phh/oneplus6-synaptics_s3320.kl /mnt/phh/keylayout/synaptics_s3320.kl
         chmod 0644 /mnt/phh/keylayout/synaptics_s3320.kl
@@ -1214,4 +1220,5 @@ if getprop ro.vendor.build.fingerprint | grep -iq -e infinix/x6833b -e tecno/lg7
 # brightness fix for platform ums512 And ums9230
 if getprop ro.board.platform |grep -iq -e ums512 -e ums9230;then
     setprop persist.sys.qcom-brightness "$(cat /sys/class/backlight/sprd_backlight/max_brightness)"
+
 fi
