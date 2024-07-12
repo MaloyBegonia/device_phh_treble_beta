@@ -1201,12 +1201,6 @@ fi
 if getprop ro.vendor.build.fingerprint | grep -iq -e infinix/x6833b -e tecno/lg7n -e tecno/lh7n -e tecno/lf7-gl; then
   setprop ro.vendor.transsion.backlight_hal.optimization 1
 
-# brightness fix for platform ums512 And ums9230
-if getprop ro.board.platform |grep -iq -e ums512 -e ums9230;then
-    setprop persist.sys.qcom-brightness "$(cat /sys/class/backlight/sprd_backlight/max_brightness)"
-
-fi
-
 # Fix for non-AMOLED Transsion devices where brightness would be dimmer than usual
 if [ -n "$(getprop ro.vendor.transsion.backlight_12bit)" ];then
     setprop ro.vendor.transsion.backlight_hal.optimization $(getprop ro.vendor.transsion.backlight_12bit)
