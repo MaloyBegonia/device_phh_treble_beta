@@ -1209,7 +1209,7 @@ if getprop ro.vendor.build.fingerprint | grep -iq -e xiaomi/renoir; then
 fi
 
 # Fix low brightness issue on Infinix Note 30, and TECNO POVA 4 non-Pro and TECNO POVA 5
-if getprop ro.vendor.build.fingerprint | grep -iq -e infinix/x6833b -e tecno/lg7n -e tecno/lh7n; then
+if getprop ro.vendor.build.fingerprint | grep -iq -e infinix/x6833b -e tecno/lg7n -e tecno/lh7n -e tecno/lf7-gl; then
   setprop ro.vendor.transsion.backlight_hal.optimization 1
 
 fi
