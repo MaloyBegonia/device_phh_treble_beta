@@ -1,8 +1,19 @@
-cc_binary {
-    name: "android.hardware.bluetooth.audio-service-system",
-    vintf_fragments: ["bluetooth_audio_system.xml"],
-    init_rc: ["android.hardware.bluetooth.audio-service-system.rc"],
-    relative_install_path: "hw",
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "hardware_interfaces_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["hardware_interfaces_license"],
+}
+
+cc_library_shared {
+    name: "android.hardware.bluetooth.audio-impl",
+    vendor: true,
+    vintf_fragments: ["bluetooth_audio.xml"],
+    defaults: [
+        "latest_android_hardware_bluetooth_audio_ndk_shared",
+    ],
     srcs: [
         "BluetoothAudioProvider.cpp",
         "BluetoothAudioProviderFactory.cpp",
@@ -16,32 +27,16 @@ cc_binary {
         "HfpSoftwareAudioProvider.cpp",
         "LeAudioOffloadAudioProvider.cpp",
         "LeAudioSoftwareAudioProvider.cpp",
-        "service_system.cpp",
+        "service.cpp",
     ],
-    header_libs: [
-        "libhardware_headers",
-    ],
-    defaults: [
-        "latest_android_hardware_bluetooth_audio_ndk_shared",
-    ],
+    export_include_dirs: ["."],
+    header_libs: ["libhardware_headers"],
     shared_libs: [
         "libbase",
-        "libbinder",
         "libbinder_ndk",
         "libcutils",
         "libfmq",
-        "libhidlbase",
         "liblog",
-        "libutils",
-        "libbluetooth_audio_session_aidl_system",
-    ],
-    required: [
-        // Audio HAL impls
-        "android.hardware.audio@2.0-impl-system",
-        "android.hardware.audio@4.0-impl-system",
-        "android.hardware.audio@5.0-impl-system",
-        "android.hardware.audio@6.0-impl-system",
-        "android.hardware.audio@7.0-impl-system",
-        "android.hardware.audio@7.1-impl-system",
+        "libbluetooth_audio_session_aidl",
     ],
 }
