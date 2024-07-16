@@ -15,6 +15,3 @@ TARGET_FACE_UNLOCK_SUPPORTED := true
 
 # Set Bootanimation at 720P
 TARGET_BOOT_ANIMATION_RES := 720
-
-# APN
-PRODUCT_PACKAGES += apns-conf.xml
